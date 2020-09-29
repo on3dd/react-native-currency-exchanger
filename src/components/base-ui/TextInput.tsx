@@ -31,8 +31,7 @@ const Input: React.FC<TextInputProps> = (
 
 const styles = StyleSheet.create({
   input: {
-    padding: 10,
-    color: colors.gray,
+    // color: colors.gray,
   }
 });
 
