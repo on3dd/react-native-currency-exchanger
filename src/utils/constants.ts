@@ -6,5 +6,6 @@ export const STATUSBAR_HEIGHT =
 export const colors = {
   // black: '#333',
   gray: '#262c38',
+  cloud: '#bdc3c7',
   white: '#fafafa',
 };
