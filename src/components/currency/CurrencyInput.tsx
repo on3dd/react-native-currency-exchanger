@@ -22,6 +22,7 @@ const CurrencyInput: React.FC<CurrencyInputProps> = (
       <TextInput
         initialValue={value}
         style={{ ...style, ...styles.input }}
+        keyboardType="numeric"
         {...otherProps}
       />
     </View>
