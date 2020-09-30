@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
 
-import { AppContext } from '@utils/AppContext';
+import { AppContext } from '@utils/contexts/AppContext';
 import { SideMenuContext } from '@utils/contexts/SideMenuContext';
 
 import CurrencyInput from '@components/currency/CurrencyInput';

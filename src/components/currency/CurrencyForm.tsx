@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { AppContext } from '@utils/AppContext';
+import { AppContext } from '@utils/contexts/AppContext';
 
 import CurrencyFormElement from '@components/currency/CurrencyFormElement';
 import CurrencyFormDivider from '@components/currency/CurrencyFormDivider';

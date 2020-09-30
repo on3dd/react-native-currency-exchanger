@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { AppContext } from '@utils/AppContext';
+import { AppContext } from '@utils/contexts/AppContext';
 import CurrencyForm from '@components/currency/CurrencyForm';
 
 const CurrencyExchanger: React.FC = () => {

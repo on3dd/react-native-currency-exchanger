@@ -13,7 +13,7 @@ module.exports = function (api) {
             '@typesdir': './src/types',
             '@styles': './src/styles',
             '@actions': './src/actions',
-            '@reducers': '.src/reducers',
+            '@reducers': './src/reducers',
             '@store': './src/store',
           },
         },
