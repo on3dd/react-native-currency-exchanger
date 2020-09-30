@@ -13,8 +13,11 @@
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@utils/*": ["./src/utils/*"],
-      "@types/*": ["./src/types/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@typesdir/*": ["./src/types/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@actions/*": ["./src/actions/*"],
+      "@reducers/*": ["./src/reducers/*"],
+      "@store/*": ["./src/store/*"]
     }
   }
 }
