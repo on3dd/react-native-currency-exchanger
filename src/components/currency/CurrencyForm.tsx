@@ -9,7 +9,7 @@ import CurrencyFormDivider from '@components/currency/CurrencyFormDivider';
 const usaFlag = "https://icon-library.com/images/united-states-flag-icon/united-states-flag-icon-16.jpg";
 const rusFlag = "https://www.iconfinder.com/data/icons/world-flags-circular/1000/Flag_of_Russia_-_Circle-512.png"
 
-const CurrencyExchanger: React.FC = () => {
+const CurrencyForm: React.FC = () => {
   const context = useContext(AppContext);
 
   return (
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default CurrencyExchanger;
+export default CurrencyForm;

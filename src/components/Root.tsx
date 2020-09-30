@@ -5,7 +5,7 @@ import container from '@styles/container';
 import StatusBar from '@components/base-ui/StatusBar';
 import CurrencyExchanger from '@components/currency/CurrencyExchanger';
 
-const Index: React.FC = () => {
+const Root: React.FC = () => {
   return (
     <View style={container}>
       <StatusBar />
@@ -14,4 +14,4 @@ const Index: React.FC = () => {
   )
 }
 
-export default Index;
+export default Root;

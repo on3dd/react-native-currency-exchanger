@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 
 import { colors } from '@utils/constants';
+import { SideMenuProvider } from '@utils/SideMenuContext';
+
 import SideDrawerMenu from '@components/base-ui/SideDrawerMenu'
 
 type DefaultLayoutProps = {
@@ -12,13 +14,17 @@ type DefaultLayoutProps = {
 const DefaultLayout: React.FC<DefaultLayoutProps> = (
   { children }: DefaultLayoutProps,
 ) => {
-  const [isVisible, isVisibleChange] = useState(true);
+  const [isVisible, isVisibleChange] = useState(false);
 
   const child = (
     <SideDrawerMenu />
   );
 
-  const toggle = () => isVisibleChange(!isVisible);
+  const toggle = () => {
+    setTimeout(() => {
+      isVisibleChange(!isVisible);
+    }, 0);
+  };
 
   return (
     <View style={styles.view}>
@@ -28,7 +34,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
         onChange={toggle}
         disableGestures={true}
       >
-        {children}
+        <SideMenuProvider value={toggle}>
+          {children}
+        </SideMenuProvider>
       </SideMenu>
     </View>
   );

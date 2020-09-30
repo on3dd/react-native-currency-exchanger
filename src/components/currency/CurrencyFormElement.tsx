@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/AppContext';
+import { SideMenuContext } from '@utils/SideMenuContext';
 
 import CurrencyInput from '@components/currency/CurrencyInput';
 
@@ -15,21 +16,28 @@ type CurrencyFormElementProps = {
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
   { name, imageUri, amount, ratio }: CurrencyFormElementProps,
 ) => {
-  const context = useContext(AppContext);
+  const appContext = useContext(AppContext);
+  const sideMenuContext = useContext(SideMenuContext);
+
+  const toggle = () => {
+    if (sideMenuContext) {
+      sideMenuContext();
+    }
+  }
 
   return (
     <View>
-      <View style={styles.row}>
+      <Pressable style={styles.row} onPress={toggle}>
         <Image source={{ uri: imageUri }} style={styles.image} />
-        <Text style={{ ...context.style.secondaryText, ...styles.text }}>
+        <Text style={{ ...appContext.style.secondaryText, ...styles.text }}>
           {name}
         </Text>
-      </View>
+      </Pressable>
 
       <CurrencyInput
         value={amount.toString()}
         text={ratio}
-        style={context.style.secondaryText}
+        style={appContext.style.secondaryText}
       />
     </View>
   )
