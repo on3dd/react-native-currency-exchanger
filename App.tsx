@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppProvider } from '@utils/AppContext';
+import { AppProvider } from '@utils/contexts/AppContext';
 import StoreProvider from '@utils/StoreProvider';
 import DefaultLayout from '@layouts/DefaultLayout';
 import Root from '@components/Root';
