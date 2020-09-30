@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-import { colors } from '@utils/constants';
-
 // TODO: fix types
 type TextInputProps = {
   initialValue?: string;
