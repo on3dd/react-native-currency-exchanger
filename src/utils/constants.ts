@@ -8,3 +8,9 @@ export const colors = {
   cloud: '#bdc3c7',
   white: '#fafafa',
 };
+
+export const API_BASE_URL = 'https://api.exchangerate.host';
+
+export const API_ENDPOINTS = {
+  symbols: '/symbols',
+};

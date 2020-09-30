@@ -37,7 +37,7 @@ type AppProviderProps = {
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <AppContext.Provider value={defaultValue}>
-      { children}
+      { children }
     </AppContext.Provider>
   )
 };

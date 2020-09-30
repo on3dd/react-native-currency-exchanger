@@ -1,16 +1,19 @@
 import React from 'react';
 
 import { AppProvider } from '@utils/AppContext';
+import StoreProvider from '@utils/StoreProvider';
 import DefaultLayout from '@layouts/DefaultLayout';
 import Root from '@components/Root';
 
 const App: React.FC = () => {
   return (
-    <AppProvider>
-      <DefaultLayout>
-        <Root />
-      </DefaultLayout>
-    </AppProvider>
+    <StoreProvider>
+      <AppProvider>
+        <DefaultLayout>
+          <Root />
+        </DefaultLayout>
+      </AppProvider>
+    </StoreProvider>
   );
 }
 

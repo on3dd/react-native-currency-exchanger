@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 
 import { colors } from '@utils/constants';
-import { SideMenuProvider } from '@utils/SideMenuContext';
+import { SideMenuProvider } from '@utils/contexts/SideMenuContext';
 
 import SideDrawerMenu from '@components/base-ui/SideDrawerMenu'
 
@@ -14,12 +14,14 @@ type DefaultLayoutProps = {
 const DefaultLayout: React.FC<DefaultLayoutProps> = (
   { children }: DefaultLayoutProps,
 ) => {
-  const [isVisible, isVisibleChange] = useState(false);
+  // TODO: set isVisible to false by default
+  const [isVisible, isVisibleChange] = useState(true);
 
   const child = (
     <SideDrawerMenu />
   );
 
+  // FIXME
   const toggle = () => {
     setTimeout(() => {
       isVisibleChange(!isVisible);
