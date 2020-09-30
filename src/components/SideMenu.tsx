@@ -1,40 +1,72 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Pressable, View, SafeAreaView, ScrollView, Text, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
+import { useFetching } from '@utils/hooks';
 import { colors } from '@utils/constants';
+import fetchSymbols from '@actions/fetchSymbols';
 import container from '@styles/container';
-
+import RootState from '@typesdir/states/root';
 
 type SideMenuOptionProps = {
-  name: string;
+  code: string;
+  description: string;
 }
 
 const SideMenuOption: React.FC<SideMenuOptionProps> = (
-  { name }: SideMenuOptionProps,
+  { code, description }: SideMenuOptionProps,
 ) => {
+  const context = useContext(AppContext);
+
   return (
     <Pressable style={({ pressed }) => [{
       backgroundColor: pressed
         ? colors.cloud
         : colors.white
     }, styles.option]} onPress={() => console.log('bruh')}>
-      <Text style={styles.optionText}>{name}</Text>
+      <View style={styles.optionText}>
+        <View style={styles.optionCode}>
+          <Text style={[context.style.secondaryText, styles.optionCodeText]}>
+            {code}
+          </Text>
+        </View>
+
+        <View style={styles.optionDescription}>
+          <Text
+            numberOfLines={1}
+            style={[context.style.secondaryText, styles.optionDescriptionText]}
+          >
+            {description}
+          </Text>
+        </View>
+      </View>
     </Pressable>
   )
 }
 
 const SideMenu: React.FC = () => {
+  const symbols = useSelector((state: RootState) => state.symbols);
+
+  useFetching(fetchSymbols);
+
   const context = useContext(AppContext);
+
   return (
     <View style={{ ...container, ...styles.menu }}>
       <Text style={{ ...context.style.primaryText, ...styles.text }}>
         Currencies
-        </Text>
+      </Text>
+
       <SafeAreaView style={styles.scrollContainer}>
         <ScrollView contentContainerStyle={styles.options}>
-          <SideMenuOption name="USD" />
-          <SideMenuOption name="RUB" />
+          {symbols.data && Object.values(symbols.data).map(el => (
+            <SideMenuOption
+              code={el.code}
+              description={el.description}
+            />)
+          )}
+
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -43,6 +75,7 @@ const SideMenu: React.FC = () => {
 
 const styles = StyleSheet.create({
   menu: {
+    paddingBottom: 0,
     backgroundColor: "#242A35",
   },
   text: {
@@ -55,17 +88,29 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   options: {
-    flex: 1,
+    flexGrow: 1,
   },
   option: {
     padding: 10,
     marginBottom: 20,
-    justifyContent: 'center',
     borderRadius: 5,
-    // backgroundColor: colors.white
   },
   optionText: {
-
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  optionCode: {
+    marginRight: 5,
+  },
+  optionCodeText: {
+    fontWeight: 'bold',
+  },
+  optionDescription: {
+    flex: 1,
+  },
+  optionDescriptionText: {
+    fontSize: 12,
   }
 })
 

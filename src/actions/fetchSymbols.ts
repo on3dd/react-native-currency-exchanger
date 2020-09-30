@@ -15,10 +15,10 @@ const fetchSymbols = () => {
     return axiosService
       .get(API_ENDPOINTS.symbols)
       .then((res) => {
-        dispatch({ type: FETCHING_SYMBOLS_SUCCESS, payload: res.data });
+        dispatch({ type: FETCHING_SYMBOLS_SUCCESS, payload: res.data.symbols });
       })
       .catch((err) => {
-        dispatch({ type: FETCHING_SYMBOLS_FAIL, payload: err.data });
+        dispatch({ type: FETCHING_SYMBOLS_FAIL, payload: err.data.symbols });
       });
   };
 };
