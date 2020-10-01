@@ -11,6 +11,7 @@ import changeAmount from '@actions/changeAmount';
 import shadow from '@styles/shadow';
 
 import RootState from '@typesdir/states/root';
+import CurrencyType from '@typesdir/CurrencyType';
 
 import CurrencyFormElement from '@components/currency/CurrencyFormElement';
 import CurrencyFormDivider from '@components/currency/CurrencyFormDivider';
@@ -23,7 +24,6 @@ const CurrencyForm: React.FC = () => {
   const convert = useSelector((state: RootState) => state.convert);
 
   useEffect(() => {
-    console.log('rendering form');
     const props = {
       from: currencies.from.code,
       to: currencies.to.code,
@@ -35,8 +35,17 @@ const CurrencyForm: React.FC = () => {
 
   const context = useContext(AppContext);
 
+  const getRatio = (type: CurrencyType) => {
+    const ratio = (type === 'from' ? convert.result : 1 / convert.result).toFixed(3);
+
+    if (type === 'from') {
+      return `1 ${currencies.from.code} = ${ratio} ${currencies.to.code}`;
+    }
+
+    return `1 ${currencies.to.code} = ${ratio} ${currencies.from.code}`;
+  }
+
   const onChangeText = (amount: string) => {
-    console.log('onChangeText:', amount);
     dispatch(changeAmount(amount));
   }
 
@@ -45,7 +54,7 @@ const CurrencyForm: React.FC = () => {
       <CurrencyFormElement
         symbol={currencies.from}
         amount={amount.number.toString()}
-        ratio={'1 USD = 78.86 RUB'}
+        ratio={getRatio('from')}
         type={CURRENCY_TYPES.from}
         onChangeText={onChangeText}
       />
@@ -55,7 +64,7 @@ const CurrencyForm: React.FC = () => {
       <CurrencyFormElement
         symbol={currencies.to}
         amount={convert.result.toString()}
-        ratio={'1 RUB = 0.013 RUB'}
+        ratio={getRatio('to')}
         type={CURRENCY_TYPES.to}
         editable={false}
       />

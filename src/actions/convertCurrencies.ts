@@ -20,8 +20,6 @@ const convertCurrencies = (props: ConvertCurrenciesProps) => {
     return axiosService
       .get(API_ENDPOINTS.convert(props))
       .then((res) => {
-        console.log('res.data.result', res.data.result);
-
         dispatch({
           type: CONVERTING_CURRENCIES_SUCCESS,
           payload: res.data.result,

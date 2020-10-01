@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 
@@ -17,7 +17,6 @@ type DefaultLayoutProps = {
 const DefaultLayout: React.FC<DefaultLayoutProps> = (
   { children }: DefaultLayoutProps,
 ) => {
-  // TODO: set isVisible to false by default
   const [isVisible, isVisibleChange] = useState(false);
   const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from);
 
@@ -28,16 +27,12 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   );
 
   const changeType = (type: CurrencyType) => {
-    console.log('type', type);
     currencyTypeChange(type);
   }
 
-  // FIXME fix setTimeout hack
-  const toggleVisibility = () => {
-    setTimeout(() => {
-      isVisibleChange(!isVisible);
-    }, 0);
-  };
+  const toggleVisibility = useCallback(() => {
+    setTimeout(() => isVisibleChange(!isVisible), 0)
+  }, [isVisible]);
 
   return (
     <View style={styles.view}>

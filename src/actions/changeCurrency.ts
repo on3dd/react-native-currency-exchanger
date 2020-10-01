@@ -10,8 +10,6 @@ type ChangeCurrencyProps = {
 };
 
 const changeCurrency = ({ type, symbol }: ChangeCurrencyProps) => {
-  console.log('symbol', symbol);
-
   if (type === CURRENCY_TYPES.from) {
     return { type: CHANGING_FROM, payload: { ...symbol } };
   }

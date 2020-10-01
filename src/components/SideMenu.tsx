@@ -70,15 +70,12 @@ const SideMenu: React.FC<SideMenuProps> = (
   const symbols = useSelector((state: RootState) => state.symbols);
 
   useEffect(() => {
-    console.log('rendering side menu');
-
     dispatch(fetchSymbols());
   }, [Object.keys(symbols.data).length]);
 
   const context = useContext(AppContext);
 
   const onPress = (symbol: Symbol) => {
-    console.log(`code: ${symbol.code}, type: ${type}`);
     dispatch(changeCurrency({ type, symbol }));
   }
 

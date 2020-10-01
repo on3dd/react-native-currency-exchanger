@@ -4,7 +4,6 @@ import { View, Text, StyleSheet } from 'react-native';
 import { COLORS } from '@utils/constants';
 import TextInput from '@components/base-ui/TextInput';
 
-// TODO: fix types
 type CurrencyInputProps = {
   [key: string]: any;
   value?: string;

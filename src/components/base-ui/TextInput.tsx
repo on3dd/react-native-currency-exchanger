@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-// TODO: fix types
 type TextInputProps = {
   initialValue?: string;
   style?: any;
