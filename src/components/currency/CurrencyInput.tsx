@@ -6,10 +6,12 @@ import TextInput from '@components/base-ui/TextInput';
 
 // TODO: fix types
 type CurrencyInputProps = {
+  [key: string]: any;
   value?: string;
   text?: string;
   style?: any;
-  [key: string]: any;
+  editable?: boolean;
+  onChangeText?: (str: string) => void;
 }
 
 const CurrencyInput: React.FC<CurrencyInputProps> = (

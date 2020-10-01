@@ -6,10 +6,11 @@ type TextInputProps = {
   initialValue?: string;
   style?: any;
   [key: string]: any;
+  onChangeText?: (str: string) => void;
 }
 
 const Input: React.FC<TextInputProps> = (
-  { initialValue = '', style = {}, ...otherProps }: TextInputProps,
+  { initialValue = '', style = {}, onChangeText, ...otherProps }: TextInputProps,
 ) => {
   const [value, setValue] = useState(initialValue);
 
@@ -17,20 +18,22 @@ const Input: React.FC<TextInputProps> = (
     setValue(initialValue);
   }, [initialValue]);
 
+  const updValue = (val: string) => {
+    if (onChangeText) onChangeText(val);
+  }
+
   return (
     <TextInput
       style={{ ...styles.input, ...style }}
       value={value}
-      onChangeText={text => setValue(text)}
+      onChangeText={updValue}
       {...otherProps}
     />
   )
 }
 
 const styles = StyleSheet.create({
-  input: {
-    // color: colors.gray,
-  }
+  input: {}
 });
 
 export default Input;

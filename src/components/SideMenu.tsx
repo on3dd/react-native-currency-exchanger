@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
-import { useFetching } from '@utils/hooks';
 import { COLORS } from '@utils/constants';
 
 import fetchSymbols from '@actions/fetchSymbols';
@@ -73,8 +72,6 @@ const SideMenu: React.FC<SideMenuProps> = (
   useEffect(() => {
     console.log('rendering side menu');
 
-    console.log('symbols.data', symbols.data);
-    console.log('Object.keys(symbols.data).length', Object.keys(symbols.data).length);
     dispatch(fetchSymbols());
   }, [Object.keys(symbols.data).length]);
 

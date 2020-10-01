@@ -11,7 +11,7 @@ type Action = {
   payload: any;
 };
 
-const symbolsReducer = (state = initialState, action: Action) => {
+const currencyReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case CHANGING_FROM:
       return Object.assign({}, state, {
@@ -28,4 +28,4 @@ const symbolsReducer = (state = initialState, action: Action) => {
   }
 };
 
-export default symbolsReducer;
+export default currencyReducer;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
 import { SideMenuContext } from '@utils/contexts/SideMenuContext';
@@ -11,14 +11,15 @@ import CurrencyInput from '@components/currency/CurrencyInput';
 
 type CurrencyFormElementProps = {
   symbol: Symbol;
-  // imageUri: string;
-  amount: number;
+  amount: string;
   ratio: string;
   type: CurrencyType;
+  editable?: boolean;
+  onChangeText?: (str: string) => void;
 }
 
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
-  { symbol, amount, ratio, type }: CurrencyFormElementProps,
+  { symbol, amount, ratio, type, ...otherProps }: CurrencyFormElementProps,
 ) => {
   const appContext = useContext(AppContext);
   const sideMenuContext = useContext(SideMenuContext);
@@ -33,19 +34,22 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
   return (
     <View>
       <Pressable style={styles.row} onPress={toggle}>
-        {/* <Image source={{ uri: imageUri }} style={styles.image} /> */}
         <Text style={[appContext.style.secondaryText, styles.text, styles.bold]}>
           {symbol.code}
         </Text>
         <Text style={[appContext.style.secondaryText, styles.text]}>
-          {` - ${symbol.description}`}
+          {' - '}
+        </Text>
+        <Text style={[appContext.style.secondaryText, styles.text]}>
+          {symbol.description}
         </Text>
       </Pressable>
 
       <CurrencyInput
-        value={amount.toString()}
+        value={amount}
         text={ratio}
         style={appContext.style.secondaryText}
+        {...otherProps}
       />
     </View>
   )

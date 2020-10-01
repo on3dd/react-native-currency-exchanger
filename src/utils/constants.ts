@@ -12,8 +12,17 @@ export const COLORS = {
 
 export const API_BASE_URL = 'https://api.exchangerate.host';
 
+type ConvertProps = {
+  from: string;
+  to: string;
+  amount: number;
+};
+
 export const API_ENDPOINTS = {
   symbols: '/symbols',
+  convert: ({ from, to, amount }: ConvertProps) => {
+    return `/convert?from=${from}&to=${to}&amount=${amount}`;
+  },
 };
 
 export const CURRENCY_TYPES = {
