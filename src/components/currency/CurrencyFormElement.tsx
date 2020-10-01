@@ -3,12 +3,14 @@ import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
 import { SideMenuContext } from '@utils/contexts/SideMenuContext';
+
 import CurrencyType from '@typesdir/CurrencyType';
+import Symbol from '@typesdir/Symbol';
 
 import CurrencyInput from '@components/currency/CurrencyInput';
 
 type CurrencyFormElementProps = {
-  name: string;
+  symbol: Symbol;
   imageUri: string;
   amount: number;
   ratio: string;
@@ -16,7 +18,7 @@ type CurrencyFormElementProps = {
 }
 
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
-  { name, imageUri, amount, ratio, type }: CurrencyFormElementProps,
+  { symbol, imageUri, amount, ratio, type }: CurrencyFormElementProps,
 ) => {
   const appContext = useContext(AppContext);
   const sideMenuContext = useContext(SideMenuContext);
@@ -33,7 +35,7 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
       <Pressable style={styles.row} onPress={toggle}>
         <Image source={{ uri: imageUri }} style={styles.image} />
         <Text style={{ ...appContext.style.secondaryText, ...styles.text }}>
-          {name}
+          {`${symbol.code} - ${symbol.description}`}
         </Text>
       </Pressable>
 

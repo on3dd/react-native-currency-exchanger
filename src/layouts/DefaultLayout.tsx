@@ -18,8 +18,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   { children }: DefaultLayoutProps,
 ) => {
   // TODO: set isVisible to false by default
-  const [isVisible, isVisibleChange] = useState(true);
-  const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from as CurrencyType);
+  const [isVisible, isVisibleChange] = useState(false);
+  const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from);
 
   const child = (
     <SideDrawerMenu>

@@ -1,16 +1,26 @@
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
-import { Pressable, View, SafeAreaView, ScrollView, Text, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Pressable,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet
+} from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
 import { useFetching } from '@utils/hooks';
 import { COLORS } from '@utils/constants';
 
 import fetchSymbols from '@actions/fetchSymbols';
+import changeCurrency from '@actions/changeCurrency';
 
 import container from '@styles/container';
+import shadow from '@styles/shadow';
 
 import CurrencyType from '@typesdir/CurrencyType';
+import Symbol from '@typesdir/Symbol';
 import RootState from '@typesdir/states/root';
 
 type SideMenuOptionProps = {
@@ -29,7 +39,7 @@ const SideMenuOption: React.FC<SideMenuOptionProps> = (
       backgroundColor: pressed
         ? COLORS.cloud
         : COLORS.white
-    }, styles.option]} onPress={onPress}>
+    }, shadow, styles.option]} onPress={onPress}>
       <View style={styles.optionText}>
         <View style={styles.optionCode}>
           <Text style={[context.style.secondaryText, styles.optionCodeText]}>
@@ -57,11 +67,17 @@ type SideMenuProps = {
 const SideMenu: React.FC<SideMenuProps> = (
   { type }: SideMenuProps
 ) => {
+  const dispatch = useDispatch();
   const symbols = useSelector((state: RootState) => state.symbols);
 
   useFetching(fetchSymbols);
 
   const context = useContext(AppContext);
+
+  const onPress = (symbol: Symbol) => {
+    console.log(`code: ${symbol.code}, type: ${type}`);
+    dispatch(changeCurrency({ type, symbol }));
+  }
 
   return (
     <View style={{ ...container, ...styles.menu }}>
@@ -76,7 +92,7 @@ const SideMenu: React.FC<SideMenuProps> = (
               key={el.code}
               code={el.code}
               description={el.description}
-              onPress={() => console.log(`code: ${el.code}, type: ${type}`)}
+              onPress={() => onPress(el)}
             />)
           )}
 

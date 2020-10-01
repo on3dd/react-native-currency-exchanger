@@ -1,4 +1,5 @@
 import { Platform, StatusBar } from 'react-native';
+import CurrencyType from '@typesdir/CurrencyType';
 
 export const STATUSBAR_HEIGHT =
   Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
@@ -16,6 +17,6 @@ export const API_ENDPOINTS = {
 };
 
 export const CURRENCY_TYPES = {
-  from: 'from',
-  to: 'to',
+  from: 'from' as CurrencyType,
+  to: 'to' as CurrencyType,
 };

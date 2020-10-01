@@ -1,4 +1,4 @@
-import Symbol from '@typesdir/states/symbols/Symbol';
+import Symbol from '@typesdir/Symbol';
 
 export default interface SymbolsState {
   data: null | Symbol[];
