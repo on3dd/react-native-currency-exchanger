@@ -3,6 +3,7 @@ import { View, Pressable, Image, Text, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
 import { SideMenuContext } from '@utils/contexts/SideMenuContext';
+import CurrencyType from '@typesdir/CurrencyType';
 
 import CurrencyInput from '@components/currency/CurrencyInput';
 
@@ -11,17 +12,19 @@ type CurrencyFormElementProps = {
   imageUri: string;
   amount: number;
   ratio: string;
+  type: CurrencyType;
 }
 
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
-  { name, imageUri, amount, ratio }: CurrencyFormElementProps,
+  { name, imageUri, amount, ratio, type }: CurrencyFormElementProps,
 ) => {
   const appContext = useContext(AppContext);
   const sideMenuContext = useContext(SideMenuContext);
 
   const toggle = () => {
     if (sideMenuContext) {
-      sideMenuContext();
+      sideMenuContext.changeType(type);
+      sideMenuContext.toggleVisibility();
     }
   }
 

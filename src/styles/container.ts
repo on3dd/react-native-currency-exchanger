@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '@utils/constants';
+import { COLORS } from '@utils/constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 30,
     paddingHorizontal: 20,
-    backgroundColor: colors.gray,
+    backgroundColor: COLORS.gray,
   },
 })
 

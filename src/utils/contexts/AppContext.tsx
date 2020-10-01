@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { colors } from '@utils/constants';
+import { COLORS } from '@utils/constants';
 
 type ContextValueProps = {
   primaryColor: string;
@@ -24,8 +24,8 @@ const contextValue = (props: ContextValueProps) => ({
 });
 
 const defaultValue = contextValue({
-  primaryColor: colors.white,
-  secondaryColor: colors.gray,
+  primaryColor: COLORS.white,
+  secondaryColor: COLORS.gray,
 });
 
 export const AppContext = createContext(defaultValue);

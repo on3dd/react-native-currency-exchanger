@@ -1,8 +1,12 @@
 import React, { createContext } from 'react';
+import CurrencyType from '@typesdir/CurrencyType';
 
-type ContextValueProps = () => void | undefined;
+type ContextValueProps = {
+  changeType: (type: CurrencyType) => void,
+  toggleVisibility: () => void,
+};
 
-const contextValue = (onPress?: ContextValueProps) => onPress;
+const contextValue = (val?: ContextValueProps) => val;
 
 const defaultValue = contextValue();
 
@@ -10,7 +14,10 @@ export const SideMenuContext = createContext(defaultValue);
 
 type SideMenuProviderProps = {
   children: JSX.Element;
-  value: () => void;
+  value: {
+    changeType: (type: CurrencyType) => void,
+    toggleVisibility: () => void,
+  };
 }
 
 export const SideMenuProvider = ({ children, value }: SideMenuProviderProps) => {

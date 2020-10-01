@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 
-import { colors } from '@utils/constants';
+import { COLORS, CURRENCY_TYPES } from '@utils/constants';
 import { SideMenuProvider } from '@utils/contexts/SideMenuContext';
+
+import CurrencyType from '@typesdir/CurrencyType';
 
 import SideDrawerMenu from '@components/base-ui/SideDrawerMenu'
 import SideMenuMenu from '@components/SideMenu';
@@ -17,15 +19,21 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
 ) => {
   // TODO: set isVisible to false by default
   const [isVisible, isVisibleChange] = useState(true);
+  const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from as CurrencyType);
 
   const child = (
     <SideDrawerMenu>
-      <SideMenuMenu />
+      <SideMenuMenu type={currencyType} />
     </SideDrawerMenu>
   );
 
+  const changeType = (type: CurrencyType) => {
+    console.log('type', type);
+    currencyTypeChange(type);
+  }
+
   // FIXME fix setTimeout hack
-  const toggle = () => {
+  const toggleVisibility = () => {
     setTimeout(() => {
       isVisibleChange(!isVisible);
     }, 0);
@@ -36,10 +44,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
       <SideMenu
         menu={child}
         isOpen={isVisible}
-        onChange={toggle}
+        onChange={toggleVisibility}
         disableGestures={true}
       >
-        <SideMenuProvider value={toggle}>
+        <SideMenuProvider value={{ changeType, toggleVisibility }}>
           {children}
         </SideMenuProvider>
       </SideMenu>
@@ -50,7 +58,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    backgroundColor: colors.gray,
+    backgroundColor: COLORS.gray,
   }
 })
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { colors } from '@utils/constants';
+import { COLORS } from '@utils/constants';
 import TextInput from '@components/base-ui/TextInput';
 
 // TODO: fix types
@@ -15,7 +15,6 @@ type CurrencyInputProps = {
 const CurrencyInput: React.FC<CurrencyInputProps> = (
   { value, text = '', style = {}, ...otherProps }: CurrencyInputProps,
 ) => {
-  console.log('value:', value);
   return (
     <View style={styles.view}>
       <Text style={styles.text}>{text}</Text>
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   text: {
-    color: colors.cloud,
+    color: COLORS.cloud,
     fontSize: 10,
     marginBottom: 5,
   },

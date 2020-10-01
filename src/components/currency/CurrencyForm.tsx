@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
+import { CURRENCY_TYPES } from '@utils/constants';
 
 import CurrencyFormElement from '@components/currency/CurrencyFormElement';
 import CurrencyFormDivider from '@components/currency/CurrencyFormDivider';
@@ -19,6 +20,7 @@ const CurrencyForm: React.FC = () => {
         imageUri={usaFlag}
         amount={2.28}
         ratio={'1 USD = 78.86 RUB'}
+        type={CURRENCY_TYPES.from}
       />
 
       <CurrencyFormDivider />
@@ -28,6 +30,7 @@ const CurrencyForm: React.FC = () => {
         imageUri={rusFlag}
         amount={179.57}
         ratio={'1 RUB = 0.013 RUB'}
+        type={CURRENCY_TYPES.to}
       />
     </View>
   )
