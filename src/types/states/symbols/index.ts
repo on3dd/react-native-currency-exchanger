@@ -1,7 +1,7 @@
-import Symbol from '@typesdir/Symbol';
+import Symbols from '@typesdir/states/symbols/Symbols';
 
 export default interface SymbolsState {
-  data: null | Symbol[];
+  data: Symbols;
   errorMessage: null | string;
   hasError: boolean;
   isFetching: null | boolean;

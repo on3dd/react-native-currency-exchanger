@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Pressable,
@@ -70,7 +70,13 @@ const SideMenu: React.FC<SideMenuProps> = (
   const dispatch = useDispatch();
   const symbols = useSelector((state: RootState) => state.symbols);
 
-  useFetching(fetchSymbols);
+  useEffect(() => {
+    console.log('rendering side menu');
+
+    console.log('symbols.data', symbols.data);
+    console.log('Object.keys(symbols.data).length', Object.keys(symbols.data).length);
+    dispatch(fetchSymbols());
+  }, [Object.keys(symbols.data).length]);
 
   const context = useContext(AppContext);
 

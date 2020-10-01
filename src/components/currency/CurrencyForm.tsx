@@ -7,7 +7,6 @@ import { CURRENCY_TYPES } from '@utils/constants';
 
 import shadow from '@styles/shadow';
 
-// import CurrencyType from '@typesdir/CurrencyType';
 import RootState from '@typesdir/states/root';
 
 import CurrencyFormElement from '@components/currency/CurrencyFormElement';
@@ -18,12 +17,7 @@ const rusFlag = "https://www.iconfinder.com/data/icons/world-flags-circular/1000
 
 const CurrencyForm: React.FC = () => {
   const context = useContext(AppContext);
-
   const currencies = useSelector((state: RootState) => state.currency);
-
-  useEffect(() => {
-    console.log('currencies', currencies);
-  }, [currencies]);
 
   return (
     <View style={{ ...context.style.form, ...styles.form, ...shadow }}>

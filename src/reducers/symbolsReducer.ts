@@ -9,7 +9,7 @@ import SymbolsState from '@typesdir/states/symbols';
 
 const initialState: SymbolsState = {
   isFetching: null,
-  data: [],
+  data: {},
   hasError: false,
   errorMessage: null,
 };
