@@ -11,14 +11,14 @@ import CurrencyInput from '@components/currency/CurrencyInput';
 
 type CurrencyFormElementProps = {
   symbol: Symbol;
-  imageUri: string;
+  // imageUri: string;
   amount: number;
   ratio: string;
   type: CurrencyType;
 }
 
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
-  { symbol, imageUri, amount, ratio, type }: CurrencyFormElementProps,
+  { symbol, amount, ratio, type }: CurrencyFormElementProps,
 ) => {
   const appContext = useContext(AppContext);
   const sideMenuContext = useContext(SideMenuContext);
@@ -33,9 +33,12 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
   return (
     <View>
       <Pressable style={styles.row} onPress={toggle}>
-        <Image source={{ uri: imageUri }} style={styles.image} />
-        <Text style={{ ...appContext.style.secondaryText, ...styles.text }}>
-          {`${symbol.code} - ${symbol.description}`}
+        {/* <Image source={{ uri: imageUri }} style={styles.image} /> */}
+        <Text style={[appContext.style.secondaryText, styles.text, styles.bold]}>
+          {symbol.code}
+        </Text>
+        <Text style={[appContext.style.secondaryText, styles.text]}>
+          {` - ${symbol.description}`}
         </Text>
       </Pressable>
 
@@ -63,6 +66,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
+  bold: {
+    fontWeight: "bold"
+  }
 })
 
 export default CurrencyFormElement;
