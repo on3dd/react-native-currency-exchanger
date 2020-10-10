@@ -8,8 +8,6 @@ type BaseSpinnerProps = {
 const BaseSpinner = ({ visible = false }: BaseSpinnerProps) => (
   <Spinner
     visible={visible}
-    textContent={'Loading'}
-    textStyle={{ color: '#253145' }}
     animation="fade"
   />
 );

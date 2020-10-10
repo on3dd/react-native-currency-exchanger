@@ -13,6 +13,7 @@ import shadow from '@styles/shadow';
 import RootState from '@typesdir/states/root';
 import CurrencyType from '@typesdir/CurrencyType';
 
+import Spinner from '@components/base-ui/Spinner';
 import CurrencyFormElement from '@components/currency/CurrencyFormElement';
 import CurrencyFormDivider from '@components/currency/CurrencyFormDivider';
 
@@ -22,6 +23,7 @@ const CurrencyForm: React.FC = () => {
   const currencies = useSelector((state: RootState) => state.currency);
   const amount = useSelector((state: RootState) => state.amount);
   const convert = useSelector((state: RootState) => state.convert);
+  const symbols = useSelector((state: RootState) => state.symbols);
 
   useEffect(() => {
     const props = {
@@ -31,7 +33,11 @@ const CurrencyForm: React.FC = () => {
     }
 
     dispatch(convertCurrencies(props));
-  }, [currencies.from, currencies.to, amount.number]);
+  }, [
+    currencies.from.code,
+    currencies.to.code,
+    amount.number
+  ]);
 
   const context = useContext(AppContext);
 
@@ -51,6 +57,8 @@ const CurrencyForm: React.FC = () => {
 
   return (
     <View style={{ ...context.style.form, ...styles.form, ...shadow }}>
+      <Spinner visible={convert.isFetching || symbols.isFetching} />
+
       <CurrencyFormElement
         symbol={currencies.from}
         amount={amount.number.toString()}
