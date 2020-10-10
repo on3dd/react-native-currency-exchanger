@@ -8,7 +8,7 @@ import Action from '@typesdir/Action';
 import ConvertState from '@typesdir/states/convert';
 
 const initialState: ConvertState = {
-  isFetching: null,
+  isFetching: false,
   result: 1,
   hasError: false,
   errorMessage: null,

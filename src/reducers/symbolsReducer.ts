@@ -8,7 +8,7 @@ import Action from '@typesdir/Action';
 import SymbolsState from '@typesdir/states/symbols';
 
 const initialState: SymbolsState = {
-  isFetching: null,
+  isFetching: false,
   data: {},
   hasError: false,
   errorMessage: null,
