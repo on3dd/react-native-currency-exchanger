@@ -9,7 +9,7 @@ import SymbolsState from '@typesdir/states/symbols';
 
 const initialState: SymbolsState = {
   isFetching: false,
-  data: {},
+  data: [],
   hasError: false,
   errorMessage: null,
 };
@@ -26,7 +26,7 @@ const symbolsReducer = (state = initialState, action: Action) => {
     case FETCHING_SYMBOLS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.payload,
+        data: Object.values(action.payload),
         hasError: false,
         errorMessage: null,
       });
