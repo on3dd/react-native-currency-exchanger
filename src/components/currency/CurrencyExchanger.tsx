@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { AppContext } from '@utils/contexts/AppContext';
+
+import heading from '@styles/heading';
+
 import CurrencyForm from '@components/currency/CurrencyForm';
 
 const CurrencyExchanger: React.FC = () => {
@@ -9,20 +12,12 @@ const CurrencyExchanger: React.FC = () => {
 
   return (
     <View style={context.style.view}>
-      <Text style={{ ...context.style.primaryText, ...styles.text }}>
+      <Text style={{ ...context.style.text, ...heading }}>
         Convert
       </Text>
       <CurrencyForm />
     </View >
   )
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 20,
-  }
-});
 
 export default CurrencyExchanger;

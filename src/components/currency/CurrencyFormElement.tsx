@@ -34,13 +34,13 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
   return (
     <View>
       <Pressable style={styles.row} onPress={toggle}>
-        <Text style={[appContext.style.secondaryText, styles.text, styles.bold]}>
+        <Text style={[appContext.style.text, styles.text, styles.bold]}>
           {symbol.code}
         </Text>
-        <Text style={[appContext.style.secondaryText, styles.text]}>
+        <Text style={[appContext.style.text, styles.text]}>
           {' - '}
         </Text>
-        <Text style={[appContext.style.secondaryText, styles.text]}>
+        <Text style={[appContext.style.text, styles.text]}>
           {symbol.description}
         </Text>
       </Pressable>
@@ -48,7 +48,7 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
       <CurrencyInput
         value={amount}
         text={ratio}
-        style={appContext.style.secondaryText}
+        style={appContext.style.text}
         {...otherProps}
       />
     </View>

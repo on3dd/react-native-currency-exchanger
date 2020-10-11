@@ -8,7 +8,7 @@ import { CURRENCY_TYPES } from '@utils/constants';
 import convertCurrencies from '@actions/convertCurrencies';
 import changeAmount from '@actions/changeAmount';
 
-import shadow from '@styles/shadow';
+import { shadowBig } from '@styles/shadows';
 
 import RootState from '@typesdir/states/root';
 import CurrencyType from '@typesdir/CurrencyType';
@@ -56,7 +56,7 @@ const CurrencyForm: React.FC = () => {
   }
 
   return (
-    <View style={{ ...context.style.form, ...styles.form, ...shadow }}>
+    <View style={{ ...context.style.view, ...styles.form, ...shadowBig }}>
       <Spinner visible={convert.isFetching || symbols.isFetching} />
 
       <CurrencyFormElement

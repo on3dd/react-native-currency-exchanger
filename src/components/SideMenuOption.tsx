@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { Pressable, View, Text, StyleSheet } from 'react-native'
 
-import { AppContext } from '@utils/contexts/AppContext';
-import { COLORS } from '@utils/constants';
+import { darken } from 'polished';
 
-import shadow from '@styles/shadow';
+import { AppContext } from '@utils/contexts/AppContext';
+import { DARKEN_AMOUNT } from '@utils/constants';
+
+import { shadowSmall } from '@styles/shadows';
 
 type SideMenuOptionProps = {
   code: string;
@@ -17,15 +19,24 @@ const SideMenuOption: React.FC<SideMenuOptionProps> = (
 ) => {
   const context = useContext(AppContext);
 
+  const backgroundColor = (pressed: boolean) => ({
+    backgroundColor: pressed
+      ? darken(DARKEN_AMOUNT, context.style.view.backgroundColor)
+      : context.style.view.backgroundColor
+  })
+
   return (
-    <Pressable style={({ pressed }) => [{
-      backgroundColor: pressed
-        ? COLORS.cloud
-        : COLORS.white
-    }, shadow, styles.option]} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        backgroundColor(pressed),
+        shadowSmall,
+        styles.option,
+      ]}
+      onPress={onPress}
+    >
       <View style={styles.optionText}>
         <View style={styles.optionCode}>
-          <Text style={[context.style.secondaryText, styles.optionCodeText]}>
+          <Text style={[context.style.text, styles.optionCodeText]}>
             {code}
           </Text>
         </View>
@@ -33,7 +44,7 @@ const SideMenuOption: React.FC<SideMenuOptionProps> = (
         <View style={styles.optionDescription}>
           <Text
             numberOfLines={1}
-            style={[context.style.secondaryText, styles.optionDescriptionText]}
+            style={[context.style.text, styles.optionDescriptionText]}
           >
             {description}
           </Text>

@@ -12,14 +12,16 @@ export const COLORS = {
 
 export const THEMES = {
   light: {
-    primaryColor: COLORS.white,
-    secondaryColor: COLORS.gray,
+    fontColor: COLORS.gray,
+    backgroundColor: COLORS.white,
   },
   dark: {
-    primaryColor: COLORS.gray,
-    secondaryColor: COLORS.white,
+    fontColor: COLORS.white,
+    backgroundColor: COLORS.gray,
   },
 };
+
+export const DARKEN_AMOUNT = 0.02;
 
 export const API_BASE_URL = 'https://api.exchangerate.host';
 

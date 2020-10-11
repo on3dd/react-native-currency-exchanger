@@ -15,12 +15,17 @@ import {
   StyleSheet
 } from 'react-native';
 
+import { darken } from 'polished';
+
 import { AppContext } from '@utils/contexts/AppContext';
 
 import fetchSymbols from '@actions/fetchSymbols';
 import changeCurrency from '@actions/changeCurrency';
 
+import { DARKEN_AMOUNT } from '@utils/constants';
+
 import container from '@styles/container';
+import heading from '@styles/heading';
 
 import CurrencyType from '@typesdir/CurrencyType';
 import Symbol from '@typesdir/Symbol';
@@ -46,6 +51,13 @@ const SideMenu: React.FC<SideMenuProps> = (
 
   const context = useContext(AppContext);
 
+  const backgroundColor = () => ({
+    backgroundColor: darken(
+      DARKEN_AMOUNT,
+      context.style.view.backgroundColor
+    )
+  });
+
   const onPress = (symbol: Symbol) => {
     dispatch(changeCurrency({ type, symbol }));
   }
@@ -60,8 +72,12 @@ const SideMenu: React.FC<SideMenuProps> = (
 
 
   return (
-    <View style={{ ...container, ...styles.menu }}>
-      <Text style={{ ...context.style.primaryText, ...styles.text }}>
+    <View style={{
+      ...container,
+      ...styles.menu,
+      ...backgroundColor(),
+    }}>
+      <Text style={{ ...context.style.text, ...heading }}>
         Currencies
       </Text>
 
@@ -92,12 +108,6 @@ const SideMenu: React.FC<SideMenuProps> = (
 const styles = StyleSheet.create({
   menu: {
     paddingBottom: 0,
-    backgroundColor: "#242A35",
-  },
-  text: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 20,
   },
   scrollContainer: {
     flexGrow: 1,

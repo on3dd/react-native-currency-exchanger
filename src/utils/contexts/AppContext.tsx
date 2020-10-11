@@ -2,23 +2,17 @@ import React, { createContext, useMemo } from 'react';
 import { THEMES } from '@utils/constants';
 
 type ContextValueProps = {
-  primaryColor: string;
-  secondaryColor: string;
+  fontColor: string;
+  backgroundColor: string;
 }
 
 const contextValue = (props: ContextValueProps) => ({
   style: {
     view: {
-      backgroundColor: props.secondaryColor,
+      backgroundColor: props.backgroundColor,
     },
-    primaryText: {
-      color: props.primaryColor,
-    },
-    secondaryText: {
-      color: props.secondaryColor,
-    },
-    form: {
-      backgroundColor: props.primaryColor,
+    text: {
+      color: props.fontColor,
     },
   }
 });

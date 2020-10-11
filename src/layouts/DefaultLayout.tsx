@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 
-import { COLORS, CURRENCY_TYPES } from '@utils/constants';
+import { CURRENCY_TYPES } from '@utils/constants';
+import { AppContext } from '@utils/contexts/AppContext';
 import { SideMenuProvider } from '@utils/contexts/SideMenuContext';
 
 import CurrencyType from '@typesdir/CurrencyType';
@@ -20,6 +21,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   const [isVisible, isVisibleChange] = useState(false);
   const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from);
 
+  const context = useContext(AppContext);
+
   const child = (
     <SideDrawerMenu>
       <SideMenuMenu type={currencyType} />
@@ -35,7 +38,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   }, [isVisible]);
 
   return (
-    <View style={styles.view}>
+    <View style={[context.style.view, styles.view]}>
       <SideMenu
         menu={child}
         isOpen={isVisible}
@@ -53,7 +56,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    backgroundColor: COLORS.gray,
   }
 })
 
