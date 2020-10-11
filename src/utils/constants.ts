@@ -10,6 +10,17 @@ export const COLORS = {
   white: '#fafafa',
 };
 
+export const THEMES = {
+  light: {
+    primaryColor: COLORS.white,
+    secondaryColor: COLORS.gray,
+  },
+  dark: {
+    primaryColor: COLORS.gray,
+    secondaryColor: COLORS.white,
+  },
+};
+
 export const API_BASE_URL = 'https://api.exchangerate.host';
 
 type ConvertProps = {

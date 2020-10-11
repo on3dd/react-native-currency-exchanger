@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { AppProvider } from '@utils/contexts/AppContext';
 import StoreProvider from '@utils/StoreProvider';
+import { AppProvider } from '@utils/contexts/AppContext';
+import { THEMES } from '@utils/constants';
+
 import DefaultLayout from '@layouts/DefaultLayout';
+
 import Root from '@components/Root';
 
 const App: React.FC = () => {
+  const [theme, setTheme] = useState(THEMES.light);
+
   return (
     <StoreProvider>
-      <AppProvider>
+      <AppProvider theme={theme}>
         <DefaultLayout>
           <Root />
         </DefaultLayout>

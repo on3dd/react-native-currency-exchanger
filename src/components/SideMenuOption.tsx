@@ -6,7 +6,6 @@ import { COLORS } from '@utils/constants';
 
 import shadow from '@styles/shadow';
 
-
 type SideMenuOptionProps = {
   code: string;
   description: string;

@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import { COLORS } from '@utils/constants';
+import React, { createContext, useMemo } from 'react';
+import { THEMES } from '@utils/constants';
 
 type ContextValueProps = {
   primaryColor: string;
@@ -23,21 +23,25 @@ const contextValue = (props: ContextValueProps) => ({
   }
 });
 
-const defaultValue = contextValue({
-  primaryColor: COLORS.white,
-  secondaryColor: COLORS.gray,
-});
+const defaultValue = contextValue(THEMES.light);
 
 export const AppContext = createContext(defaultValue);
 
 type AppProviderProps = {
+  theme: any, // TODO: change to return type of the contextValue()
   children: JSX.Element
 }
 
-export const AppProvider = ({ children }: AppProviderProps) => {
+export const AppProvider = (
+  { children, theme = defaultValue }: AppProviderProps
+) => {
+  const value = useMemo(() => {
+    return contextValue(theme);
+  }, [theme])
+
   return (
-    <AppContext.Provider value={defaultValue}>
-      { children }
+    <AppContext.Provider value={value}>
+      {children}
     </AppContext.Provider>
   )
 };
