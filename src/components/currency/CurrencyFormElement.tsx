@@ -21,26 +21,24 @@ type CurrencyFormElementProps = {
 const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
   { symbol, amount, ratio, type, ...otherProps }: CurrencyFormElementProps,
 ) => {
-  const appContext = useContext(AppContext);
-  const sideMenuContext = useContext(SideMenuContext);
+  const { theme } = useContext(AppContext);
+  const { changeType, toggleVisibility } = useContext(SideMenuContext);
 
   const toggle = () => {
-    if (sideMenuContext) {
-      sideMenuContext.changeType(type);
-      sideMenuContext.toggleVisibility();
-    }
+    changeType(type);
+    toggleVisibility();
   }
 
   return (
     <View>
       <Pressable style={styles.row} onPress={toggle}>
-        <Text style={[appContext.style.text, styles.text, styles.bold]}>
+        <Text style={[theme.text, styles.text, styles.bold]}>
           {symbol.code}
         </Text>
-        <Text style={[appContext.style.text, styles.text]}>
+        <Text style={[theme.text, styles.text]}>
           {' - '}
         </Text>
-        <Text style={[appContext.style.text, styles.text]}>
+        <Text style={[theme.text, styles.text]}>
           {symbol.description}
         </Text>
       </Pressable>
@@ -48,7 +46,7 @@ const CurrencyFormElement: React.FC<CurrencyFormElementProps> = (
       <CurrencyInput
         value={amount}
         text={ratio}
-        style={appContext.style.text}
+        style={theme.text}
         {...otherProps}
       />
     </View>

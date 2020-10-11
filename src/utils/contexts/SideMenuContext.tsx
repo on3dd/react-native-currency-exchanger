@@ -6,23 +6,26 @@ type ContextValueProps = {
   toggleVisibility: () => void,
 };
 
-const contextValue = (val?: ContextValueProps) => val;
+const contextValue = (val: ContextValueProps) => val;
 
-const defaultValue = contextValue();
+const defaultValue = contextValue({
+  changeType: () => { },
+  toggleVisibility: () => { },
+});
 
 export const SideMenuContext = createContext(defaultValue);
 
 type SideMenuProviderProps = {
-  children: JSX.Element;
   value: {
     changeType: (type: CurrencyType) => void,
     toggleVisibility: () => void,
   };
+  children: JSX.Element;
 }
 
-export const SideMenuProvider = ({ children, value }: SideMenuProviderProps) => {
+export const SideMenuProvider = ({ children, value = defaultValue }: SideMenuProviderProps) => {
   return (
-    <SideMenuContext.Provider value={value || defaultValue}>
+    <SideMenuContext.Provider value={value}>
       {children}
     </SideMenuContext.Provider>
   )
