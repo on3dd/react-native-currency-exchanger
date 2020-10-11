@@ -23,7 +23,9 @@ type SideMenuProviderProps = {
   children: JSX.Element;
 }
 
-export const SideMenuProvider = ({ children, value = defaultValue }: SideMenuProviderProps) => {
+export const SideMenuProvider = (
+  { children, value = defaultValue }: SideMenuProviderProps
+) => {
   return (
     <SideMenuContext.Provider value={value}>
       {children}

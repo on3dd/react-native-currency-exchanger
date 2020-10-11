@@ -17,12 +17,15 @@ const contextValue = (props: ContextValueProps) => ({
 
 const defaultValue = contextValue(THEMES.light);
 
-export const AppContext = createContext({ theme: defaultValue });
+export const AppContext = createContext({
+  theme: defaultValue,
+  toggleTheme: () => { },
+});
 
 type AppProviderProps = {
   value: {
     theme: ContextValueProps,
-    toggleTheme?: () => void,
+    toggleTheme: () => void,
   },
   children: JSX.Element
 }
