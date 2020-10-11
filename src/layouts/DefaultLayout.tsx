@@ -21,7 +21,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   const [isVisible, isVisibleChange] = useState(false);
   const [currencyType, currencyTypeChange] = useState(CURRENCY_TYPES.from);
 
-  const context = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   const child = (
     <SideDrawerMenu>
@@ -38,7 +38,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (
   }, [isVisible]);
 
   return (
-    <View style={[context.style.view, styles.view]}>
+    <View style={[theme.view, styles.view]}>
       <SideMenu
         menu={child}
         isOpen={isVisible}

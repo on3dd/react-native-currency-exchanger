@@ -45,16 +45,17 @@ const SideMenu: React.FC<SideMenuProps> = (
   const dispatch = useDispatch();
   const symbols = useSelector((state: RootState) => state.symbols);
 
+  const { theme } = useContext(AppContext);
+
   useEffect(() => {
     dispatch(fetchSymbols());
   }, [symbols.data.length]);
 
-  const context = useContext(AppContext);
 
   const backgroundColor = () => ({
     backgroundColor: darken(
       DARKEN_AMOUNT,
-      context.style.view.backgroundColor
+      theme.view.backgroundColor
     )
   });
 
@@ -77,7 +78,7 @@ const SideMenu: React.FC<SideMenuProps> = (
       ...styles.menu,
       ...backgroundColor(),
     }}>
-      <Text style={{ ...context.style.text, ...heading }}>
+      <Text style={{ ...theme.text, ...heading }}>
         Currencies
       </Text>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import StoreProvider from '@utils/StoreProvider';
 import { AppProvider } from '@utils/contexts/AppContext';
@@ -11,9 +11,15 @@ import Root from '@components/Root';
 const App: React.FC = () => {
   const [theme, setTheme] = useState(THEMES.light);
 
+  const toggleTheme = useCallback(() => {
+    return theme.fontColor === THEMES.light.fontColor
+      ? setTheme(THEMES.dark)
+      : setTheme(THEMES.light)
+  }, [theme]);
+
   return (
     <StoreProvider>
-      <AppProvider theme={theme}>
+      <AppProvider value={{ theme, toggleTheme }}>
         <DefaultLayout>
           <Root />
         </DefaultLayout>

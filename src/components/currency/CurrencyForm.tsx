@@ -25,6 +25,8 @@ const CurrencyForm: React.FC = () => {
   const convert = useSelector((state: RootState) => state.convert);
   const symbols = useSelector((state: RootState) => state.symbols);
 
+  const { theme } = useContext(AppContext);
+
   useEffect(() => {
     const props = {
       from: currencies.from.code,
@@ -38,8 +40,6 @@ const CurrencyForm: React.FC = () => {
     currencies.to.code,
     amount.number
   ]);
-
-  const context = useContext(AppContext);
 
   const getRatio = (type: CurrencyType) => {
     const ratio = (type === 'from' ? convert.result : 1 / convert.result).toFixed(3);
@@ -56,7 +56,7 @@ const CurrencyForm: React.FC = () => {
   }
 
   return (
-    <View style={{ ...context.style.view, ...styles.form, ...shadowBig }}>
+    <View style={{ ...theme.view, ...styles.form, ...shadowBig }}>
       <Spinner visible={convert.isFetching || symbols.isFetching} />
 
       <CurrencyFormElement

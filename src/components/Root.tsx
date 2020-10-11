@@ -9,10 +9,10 @@ import StatusBar from '@components/base-ui/StatusBar';
 import CurrencyExchanger from '@components/currency/CurrencyExchanger';
 
 const Root: React.FC = () => {
-  const context = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   return (
-    <View style={[context.style.view, container]}>
+    <View style={[theme.view, container]}>
       <StatusBar />
       <CurrencyExchanger />
     </View>

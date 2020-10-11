@@ -17,12 +17,12 @@ type SideMenuOptionProps = {
 const SideMenuOption: React.FC<SideMenuOptionProps> = (
   { code, description, onPress }: SideMenuOptionProps,
 ) => {
-  const context = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   const backgroundColor = (pressed: boolean) => ({
     backgroundColor: pressed
-      ? darken(DARKEN_AMOUNT, context.style.view.backgroundColor)
-      : context.style.view.backgroundColor
+      ? darken(DARKEN_AMOUNT, theme.view.backgroundColor)
+      : theme.view.backgroundColor
   })
 
   return (
@@ -36,7 +36,7 @@ const SideMenuOption: React.FC<SideMenuOptionProps> = (
     >
       <View style={styles.optionText}>
         <View style={styles.optionCode}>
-          <Text style={[context.style.text, styles.optionCodeText]}>
+          <Text style={[theme.text, styles.optionCodeText]}>
             {code}
           </Text>
         </View>
@@ -44,7 +44,7 @@ const SideMenuOption: React.FC<SideMenuOptionProps> = (
         <View style={styles.optionDescription}>
           <Text
             numberOfLines={1}
-            style={[context.style.text, styles.optionDescriptionText]}
+            style={[theme.text, styles.optionDescriptionText]}
           >
             {description}
           </Text>

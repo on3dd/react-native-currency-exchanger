@@ -7,30 +7,33 @@ type ContextValueProps = {
 }
 
 const contextValue = (props: ContextValueProps) => ({
-  style: {
-    view: {
-      backgroundColor: props.backgroundColor,
-    },
-    text: {
-      color: props.fontColor,
-    },
-  }
+  view: {
+    backgroundColor: props.backgroundColor,
+  },
+  text: {
+    color: props.fontColor,
+  },
 });
 
 const defaultValue = contextValue(THEMES.light);
 
-export const AppContext = createContext(defaultValue);
+export const AppContext = createContext({ theme: defaultValue });
 
 type AppProviderProps = {
-  theme: any, // TODO: change to return type of the contextValue()
+  value: {
+    theme: ContextValueProps,
+    toggleTheme?: () => void,
+  },
   children: JSX.Element
 }
 
 export const AppProvider = (
-  { children, theme = defaultValue }: AppProviderProps
+  { children,
+    value: { theme = THEMES.light, toggleTheme }
+  }: AppProviderProps
 ) => {
   const value = useMemo(() => {
-    return contextValue(theme);
+    return { theme: contextValue(theme), toggleTheme };
   }, [theme])
 
   return (

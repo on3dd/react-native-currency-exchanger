@@ -8,11 +8,11 @@ import heading from '@styles/heading';
 import CurrencyForm from '@components/currency/CurrencyForm';
 
 const CurrencyExchanger: React.FC = () => {
-  const context = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   return (
-    <View style={context.style.view}>
-      <Text style={{ ...context.style.text, ...heading }}>
+    <View style={theme.view}>
+      <Text style={{ ...theme.text, ...heading }}>
         Convert
       </Text>
       <CurrencyForm />
