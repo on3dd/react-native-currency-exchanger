@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppProvider } from '@utils/contexts/AppContext';
 import { THEMES } from '@utils/constants';
+import { isDarkByFontColor } from '@utils/functions';
 
 import changeTheme from '@actions/changeTheme';
 
@@ -18,9 +19,9 @@ const App: React.FC = () => {
   const theme = useSelector((state: RootState) => state.theme.type);
 
   const toggleTheme = useCallback(() => {
-    return theme.fontColor === THEMES.light.fontColor
-      ? dispatch(changeTheme(THEMES.dark))
-      : dispatch(changeTheme(THEMES.light))
+    return isDarkByFontColor(theme.fontColor)
+      ? dispatch(changeTheme(THEMES.light))
+      : dispatch(changeTheme(THEMES.dark))
   }, [theme]);
 
   return (
