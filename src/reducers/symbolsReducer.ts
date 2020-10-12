@@ -4,7 +4,7 @@ import {
   FETCHING_SYMBOLS_FAIL,
 } from '@utils/actionTypes';
 
-import Action from '@typesdir/Action';
+import AsyncAction from '@typesdir/AsyncAction';
 import SymbolsState from '@typesdir/states/symbols';
 
 const initialState: SymbolsState = {
@@ -14,7 +14,7 @@ const initialState: SymbolsState = {
   errorMessage: null,
 };
 
-const symbolsReducer = (state = initialState, action: Action) => {
+const symbolsReducer = (state = initialState, action: AsyncAction) => {
   switch (action.type) {
     case FETCHING_SYMBOLS:
       return Object.assign({}, state, {

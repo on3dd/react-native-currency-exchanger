@@ -1,12 +1,8 @@
 import React, { createContext, useMemo } from 'react';
 import { THEMES } from '@utils/constants';
+import ThemeType from '@typesdir/ThemeType';
 
-type ContextValueProps = {
-  fontColor: string;
-  backgroundColor: string;
-}
-
-const contextValue = (props: ContextValueProps) => ({
+const contextValue = (props: ThemeType) => ({
   view: {
     backgroundColor: props.backgroundColor,
   },
@@ -24,7 +20,7 @@ export const AppContext = createContext({
 
 type AppProviderProps = {
   value: {
-    theme: ContextValueProps,
+    theme: ThemeType,
     toggleTheme: () => void,
   },
   children: JSX.Element

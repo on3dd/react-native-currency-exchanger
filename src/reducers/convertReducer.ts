@@ -4,7 +4,7 @@ import {
   CONVERTING_CURRENCIES_FAIL,
 } from '@utils/actionTypes';
 
-import Action from '@typesdir/Action';
+import AsyncAction from '@typesdir/AsyncAction';
 import ConvertState from '@typesdir/states/convert';
 
 const initialState: ConvertState = {
@@ -14,7 +14,7 @@ const initialState: ConvertState = {
   errorMessage: null,
 };
 
-const convertReducer = (state = initialState, action: Action) => {
+const convertReducer = (state = initialState, action: AsyncAction) => {
   switch (action.type) {
     case CONVERTING_CURRENCIES:
       return Object.assign({}, state, {

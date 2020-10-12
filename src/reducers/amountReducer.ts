@@ -1,13 +1,9 @@
 import { CHANGING_AMOUNT } from '@utils/actionTypes';
 import AmountState from '@typesdir/states/amount';
+import Action from '@typesdir/Action';
 
 const initialState: AmountState = {
   number: 1.0,
-};
-
-type Action = {
-  type: string;
-  payload: any;
 };
 
 const amountReducer = (state = initialState, action: Action) => {
